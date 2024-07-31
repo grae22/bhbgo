@@ -71,19 +71,17 @@ func formatAccountName(
 
 func formatBalance(account *accounts.Account) string {
 
-	if len(account.Balance.ByPeriod) == 0 {
-		return "0"
+	balanceAbs := account.Balance
+
+	if balanceAbs < 0 {
+		balanceAbs = -balanceAbs
 	}
 
-	lastPeriodIndex := len(account.Balance.ByPeriod) - 1
+	balanceStr := strconv.Itoa(balanceAbs)
 
-	value := account.Balance.ByPeriod[lastPeriodIndex]
-
-	valueStr := strconv.Itoa(value)
-
-	if value < 0 {
-		return "[" + valueStr + "]"
+	if account.Balance < 0 {
+		return "[" + balanceStr + "]"
 	}
 
-	return valueStr
+	return balanceStr
 }

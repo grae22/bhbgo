@@ -34,6 +34,7 @@ func Run() {
 	newAccount := new(accounts.Account)
 	newAccount.Name = name
 	newAccount.AccountType = accountType.AccountType
+	newAccount.Parent = parentAccount
 
 	parentAccount.Children = append(parentAccount.Children, newAccount)
 }
